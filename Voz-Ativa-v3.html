@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voz Ativa AI - Vença o Medo de Falar!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6a0dad; /* Roxo */
+            --secondary-color: #00bcd4; /* Azul Turquesa */
+            --accent-color: #ffd700; /* Amarelo Ouro */
+            --text-color: #333;
+            --light-bg: #f8f8f8;
+            --dark-bg: #2c3e50;
+            --white: #ffffff;
+            --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            /* Combinando o gradiente semi-transparente sobre a imagem de fundo */
+            /* O gradiente agora usa cores RGBA para ter opacidade e atuar como um overlay */
+            background: 
+                linear-gradient(135deg, rgba(106, 13, 173, 0.7) 0%, rgba(0, 188, 212, 0.7) 100%), /* Gradiente de cor semi-transparente */
+                url('hero-voz-ativa.jpg') no-repeat center center / cover; /* Sua imagem de fundo */
+            
+            color: var(--white);
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            min-height: 500px; /* Altura mínima para o hero, ajustável */
+            display: flex; /* Para centralizar o conteúdo verticalmente */
+            align-items: center; /* Centraliza verticalmente */
+            justify-content: center; /* Centraliza horizontalmente */
+            flex-direction: column; /* Organiza itens em coluna */
+        }
+
+        /* Os pseudo-elementos ::before e ::after que criavam os círculos
+           e o overlay anterior foram removidos para simplificar,
+           já que o overlay agora é feito no background principal.
+           Se quiser os círculos de volta, eles precisarão ser reintroduzidos
+           e ajustados para ficarem acima do background e abaixo do texto. */
+        
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            position: relative; /* Garante que o texto fique acima do background */
+            z-index: 2; /* Garante que o texto fique acima do overlay do background */
+        }
+
+        .hero h3 {
+            font-size: 1.5em;
+            font-weight: 300;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative; /* Garante que o texto fique acima do background */
+            z-index: 2; /* Garante que o texto fique acima do overlay do background */
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: var(--shadow);
+            position: relative; /* Garante que o botão fique acima do background */
+            z-index: 2; /* Garante que o botão fique acima do overlay do background */
+        }
+
+        .cta-button:hover {
+            background-color: #ffeb3b;
+            transform: translateY(-3px);
+        }
+
+        /* Removido .hero-image pois a imagem agora é background */
+
+
+        /* Sections */
+        section {
+            padding: 60px 0;
+        }
+
+        section h2 {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .section-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            flex: 1;
+            min-width: 280px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        /* Prova Social */
+        .proof-social {
+            background-color: var(--dark-bg);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .proof-social h2 {
+            color: var(--white);
+        }
+
+        .proof-social h2::after {
+            background-color: var(--accent-color);
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .stat-item {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .stat-item .number {
+            font-size: 3em;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+
+        .testimonial {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+            font-style: italic;
+            position: relative;
+        }
+        .testimonial::before {
+            content: "“";
+            font-size: 5em;
+            color: var(--accent-color);
+            position: absolute;
+            top: 0px;
+            left: 20px;
+            line-height: 0.5;
+            opacity: 0.7;
+        }
+        .testimonial p {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+        .testimonial strong {
+            display: block;
+            text-align: right;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        /* Como Funciona */
+        .how-it-works .section-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .step-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            text-align: center;
+            border-top: 5px solid var(--secondary-color);
+            transition: border-top-color 0.3s ease;
+        }
+
+        .step-card:hover {
+            border-top-color: var(--primary-color);
+        }
+
+        .step-card .step-number {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .step-card h3 {
+            color: var(--secondary-color);
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        /* FAQ */
+        .faq {
+            background-color: var(--light-bg);
+        }
+
+        .faq-item {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.1em;
+            border-bottom: 1px solid #eee;
+        }
+
+        .faq-question:hover {
+            background-color: #f0f0f0;
+        }
+
+        .faq-question .icon {
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active .icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background-color: #fafafa;
+        }
+
+        .faq-answer p {
+            padding-bottom: 20px;
+            color: #555;
+        }
+
+        /* Garantias */
+        .guarantees {
+            background: linear-gradient(45deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .guarantees h2 {
+            color: var(--white);
+        }
+        .guarantees h2::after {
+            background-color: var(--accent-color);
+        }
+
+        .guarantee-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .guarantee-item {
+            text-align: center;
+            max-width: 300px;
+        }
+
+        .guarantee-item img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.3));
+        }
+
+        .guarantee-item h3 {
+            font-size: 1.4em;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+        .guarantee-item p {
+            font-size: 1.1em;
+            font-weight: 300;
+        }
+
+
+        /* Final CTA */
+        .final-cta {
+            background-color: var(--white);
+            text-align: center;
+            padding: 80px 20px;
+            border-top-left-radius: 50px;
+            border-top-right-radius: 50px;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+        }
+
+        .final-cta h2 {
+            font-size: 2.8em;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+        }
+        .final-cta h3 {
+            font-size: 1.8em;
+            font-weight: 300;
+            margin-bottom: 40px;
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-bg);
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 400px; /* Ajuste para telas menores */
+                padding: 60px 20px;
+            }
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            .hero h3 {
+                font-size: 1.2em;
+            }
+            .section-content {
+                flex-direction: column;
+                align-items: center;
+            }
+            .card, .step-card {
+                width: 90%;
+            }
+            .stats-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            .stat-item {
+                margin-bottom: 20px;
+            }
+            .guarantee-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            section h2 {
+                font-size: 2em;
+            }
+            .final-cta h2 {
+                font-size: 2.2em;
+            }
+            .final-cta h3 {
+                font-size: 1.4em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="container">
+            <h1>Vença o medo de falar!</h1>
+            <h3>Pratique conversas difíceis com segurança, melhore sua confiança e aumente suas chances de conquistar a vaga.</h3>
+            <a href="agradecimento.html" class="cta-button">Superar meu medo hoje!</a>
+        </div>
+    </header>
+
+    <section id="beneficios" class="benefits">
+        <div class="container">
+            <h2>BENEFÍCIOS QUE TRANSFORMAM</h2>
+            <div class="section-content">
+                <div class="card">
+                    <h3>Confiança inabalável</h3>
+                    <p>Sinta-se mais seguro em qualquer situação. Nossos treinos focados na sua performance oral te preparam para expressar suas ideias com clareza e convicção, eliminando a ansiedade.</p>
+                </div>
+                <div class="card">
+                    <h3>Prática segura e ilimitada</h3>
+                    <p>Treine quantas vezes quiser, em um ambiente livre de julgamentos. A IA da Voz Ativa oferece feedback instantâneo e construtivo, permitindo que você experimente e melhore no seu ritmo, sem pressão.</p>
+                </div>
+                <div class="card">
+                    <h3>Preparação realista para o sucesso</h3>
+                    <p>Simule entrevistas e conversas cruciais com cenários idênticos à realidade. Aumente suas chances de impressionar e conseguir a vaga dos seus sonhos, sabendo exatamente o que esperar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="prova-social" class="proof-social">
+        <div class="container">
+            <h2>Quem já experimentou, comprova!</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="number">92%</div>
+                    <p>Aumento na confiança ao se comunicar após 3 semanas.</p>
+                </div>
+                <div class="stat-item">
+                    <div class="number">7 em 10</div>
+                    <p>Usuários afirmam sucesso em entrevistas com Voz Ativa.</p>
+                </div>
+                <div class="stat-item">
+                    <div class="number">+10.000</div>
+                    <p>Profissionais transformaram suas carreiras.</p>
+                </div>
+            </div>
+            <div class="testimonial">
+                <p>"Eu sempre travava em entrevistas, mas a Voz Ativa mudou tudo. Consegui a vaga dos meus sonhos e, o melhor, sinto que posso falar sobre qualquer coisa agora!"</p>
+                <strong>— Ana P., Designer Gráfica</strong>
+            </div>
+        </div>
+    </section>
+
+    <section id="como-funciona" class="how-it-works">
+        <div class="container">
+            <h2>Como a voz ativa te ajuda em 3 passos simples:</h2>
+            <div class="section-content">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Escolha seu desafio</h3>
+                    <p>Selecione o tipo de conversa que deseja praticar: entrevista de emprego, apresentação, negociação, feedback, etc.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Treine com a IA</h3>
+                    <p>Fale, responda e interaja. Nossa IA analisa sua performance em tempo real, desde o tom de voz à escolha das palavras.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Receba feedback personalizado</h3>
+                    <p>Obtenha relatórios detalhados com pontos fortes e áreas para melhorar, além de sugestões práticas para sua próxima sessão.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2>FAQ - Suas dúvidas, nossas respostas:</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>"E se eu travar durante o treino?"</span>
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Não se preocupe! A Voz Ativa é um ambiente seguro. Se travar, a IA te guiará com perguntas e sugestões, ajudando a retomar o fluxo da conversa. É para isso que estamos aqui: para você praticar sem medo de errar.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>"Nunca fiz isso antes. É muito complicado?"</span>
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>De jeito nenhum! A plataforma Voz Ativa foi pensada para ser intuitiva e fácil de usar, mesmo para iniciantes. Com poucos cliques, você já estará treinando e sentindo a diferença. Nossa interface é amigável e te guia em cada passo.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>"Funciona mesmo para pessoas tímidas?"</span>
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sim, absolutamente! A Voz Ativa é especialmente desenvolvida para ajudar quem se sente inseguro ou tímido. Você pratica no seu tempo, sem julgamentos, e ganha a confiança necessária para brilhar em qualquer conversa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="garantias" class="guarantees">
+        <div class="container">
+            <h2>SUA TRANSFORMAÇÃO COMEÇA SEM RISCOS!</h2>
+            <div class="guarantee-grid">
+                <div class="guarantee-item">
+                    <img src="https://img.icons8.com/ios-filled/100/ffffff/checkmark--v1.png" alt="Selo de Garantia">
+                    <h3>Garantia de satisfação total</h3>
+                    <p>Não gostou? Nós devolvemos seu dinheiro nos primeiros 7 dias, sem perguntas. Nosso compromisso é com a sua confiança.</p>
+                </div>
+                <div class="guarantee-item">
+                    <img src="https://img.icons8.com/ios-filled/100/ffffff/lock--v1.png" alt="Selo de Segurança">
+                    <h3>Selo de segurança</h3>
+                    <p>Seus dados e treinos são 100% confidenciais e protegidos. Sua privacidade é nossa prioridade.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="final-cta" class="final-cta">
+        <div class="container">
+            <h2>Pronto para dominar qualquer conversa?</h2>
+            <h3>Chega de perder oportunidades por falta de confiança. A Voz Ativa é a sua chance de se expressar com clareza, segurança e impacto.</h3>
+            <a href="#" class="cta-button">Conquiste a confiança que você merece para falar em público e ter sucesso em todas as suas entrevistas!</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Voz Ativa AI. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const icon = question.querySelector('.icon');
+
+                    question.classList.toggle('active');
+                    if (answer.style.maxHeight) {
+                        answer.style.maxHeight = null;
+                    } else {
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
